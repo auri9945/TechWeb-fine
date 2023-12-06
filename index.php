@@ -46,7 +46,7 @@
   $(document).ready(function(){
 
     // SCRIPT POP UP LOGIN
-    $("#myBtn").click(function() {
+    $("#your_account").click(function() {
       // Prendi il popup del login tramite ID - JQuery
       $("#myModal").show();
     });
@@ -129,7 +129,7 @@
             </span>
           </button>
       </form>
-      <button class="btn" id="your-account"> 
+      <button class="btn" id="your_account"> 
         <span title="Login">
           <i class="fa fa-user-o" aria-hidden="true"></i>
         </span>
