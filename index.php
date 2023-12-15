@@ -5,37 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-   <!--1.Libreria jQuery 
+  <!--1.Libreria jQuery 
     (file in remoto - La versione remota viene presa da una CDN – Content Delivery Network, 
     cioè un gruppo di server distribuiti su più aree geografiche che possiede copie di contenuti Internet e li consegna 
     in modo veloce e trasparente, )--> 
-
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
 
   <!--2.CSS di Bootstrap--> 
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
  
   <!--3.JS di Bootstrap-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
-
-<!--4.JS di Bootbox <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.3/bootbox.min.js" 
+  <!--4.JS di Bootbox <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.3/bootbox.min.js" 
         integrity="sha512-…" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/6.0.0/bootbox.all.min.js"></script>
-
-
- <!--5.CSS con le icone Font Awesome-->
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/6.0.0/bootbox.all.min.js"></script>
 
 
-<!-- nostro CSS <link href="css/style.css" rel="stylesheet" /> -->
-        
+  <!--5.CSS con le icone Font Awesome-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<link rel="stylesheet" type="text/css" href="CSS/stile.css">
+
+  <!-- nostro CSS <link href="css/style.css" rel="stylesheet" /> 
+  <link rel="stylesheet" type="text/css" href="CSS/stile.css">-->
+  <link rel="stylesheet" href="CSS\stile.css">
 
    
 <!--TITOLO PAGINA-->
@@ -164,6 +159,50 @@
 
 <!-- PAGE CONTENT-->
 
+<div class="Crea_post ">
+        <h1>CREA IL TUO POST</h1>
+          <p>esprimi (non sopprimi) la tua opinione qui su Cime blog!</p>
+        <div>
+          <button href="#" id="myBtnPost" class="myBtnPost btn-post"> + Crea Post</button>
+        </div>
+      </div>
+
+        <!-- POP UP CREATE POST-->
+        <div id="myModalPost" class="modal">
+
+        <!-- pop up POST content -->
+        <div class="modal-content">
+          
+                <form class="form">
+              <p class="form-title">Crea il tuo post</p>
+                <div class="input-container">
+                  <input type="title" placeholder="Titolo">
+                  <span>
+                  </span>
+              </div>
+              <div class="input-container">
+                  <select type="materie">
+                    <option value="materia" disabled>scegli la materia</option>
+                    <option value="materia">Materia 1</option>
+                    <option value="materia">Materia 2</option>
+                    <option value="materia">Materia 3</option>
+                    <option value="materia">Materia 4</option>
+                  </select>
+                </div>
+              <div class="input-container">
+                  <input style="height: 200px;" 
+                  type="Content" placeholder="scrivi qui il tuo post">
+                </div>
+                <button type="submit" class="submit">
+                Pubblica post
+              </button>
+          </form>
+                <button id="popupClsPost" class="close">Chiudi
+                </button>
+
+        </div>
+        </div>
+
   <div class="container">
     <div class="page-content">
 
@@ -204,30 +243,30 @@
           <!-- pop up SIGNUP content -->
           <div class="modal-content">
             
-          <form class="form">
-              <p class="form-title">Sign Up to your account</p>
-                <div class="input-container">
-                  <input type="email" placeholder="Enter email">
-                  <span>
-                  </span>
-              </div>
-              <div class="input-container">
-                  <input type="password" placeholder="Enter password">
-                </div>
-                <button type="submit" class="submit">
-                Sign up
+              <form class="form">
+                  <p class="form-title">Sign Up to your account</p>
+                    <div class="input-container">
+                      <input type="email" placeholder="Enter email">
+                      <span>
+                      </span>
+                  </div>
+                  <div class="input-container">
+                      <input type="password" placeholder="Enter password">
+                    </div>
+                    <button type="submit" class="submit">
+                    Sign up
+                  </button>
+
+                  <p class="signup-link">
+                    -Have an account?
+                    <a href="" id="your_account">Login</a>
+                  </p>
+              </form>
+              <button id="popupCls_signUp" class="close">Chiudi
               </button>
 
-              <p class="signup-link">
-                -Have an account?
-                <a href="" id="your_account">Login</a>
-              </p>
-          </form>
-          <button id="popupCls_signUp" class="close">Chiudi
-          </button>
-
           </div>
-          </div>
+        </div>
 
 
 
@@ -236,55 +275,7 @@
 
  <!-- PAGE CONTENT POST-->
 
-
-
-
-      <div class="Crea_post ">
-        <h1>CREA IL TUO POST</h1>
-          <p>esprimi (non sopprimi) la tua opinione qui su Cime blog!</p>
-        <div>
-          <button href="#" id="myBtnPost" class="myBtnPost btn-post"> + Crea Post</button>
-        </div>
-      </div>
-
-
-      
-
-        <!-- POP UP CREATE POST-->
-        <div id="myModalPost" class="modal">
-
-        <!-- pop up POST content -->
-        <div class="modal-content">
-          
-                <form class="form">
-              <p class="form-title">Crea il tuo post</p>
-                <div class="input-container">
-                  <input type="title" placeholder="Titolo">
-                  <span>
-                  </span>
-              </div>
-              <div class="input-container">
-                  <select type="materie">
-                    <option value="materia" disabled>scegli la materia</option>
-                    <option value="materia">Materia 1</option>
-                    <option value="materia">Materia 2</option>
-                    <option value="materia">Materia 3</option>
-                    <option value="materia">Materia 4</option>
-                  </select>
-                </div>
-              <div class="input-container">
-                  <input style="height: 200px;" 
-                  type="Content" placeholder="scrivi qui il tuo post">
-                </div>
-                <button type="submit" class="submit">
-                Pubblica post
-              </button>
-          </form>
-                <button id="popupClsPost" class="close">Chiudi
-                </button>
-
-        </div>
-        </div>
+ 
 
 
 
