@@ -67,6 +67,7 @@
           // SCRIPT POP UP CREATE POST
           $("#SignUpBtn").click(function() {
             // Prendi il popup del login tramite ID - JQuery
+            $("#myModal").hide();
             $("#myModal_signUp").show();
           });
 
@@ -102,8 +103,7 @@
           // FINE SCRIPT POP UP CREATE POST
 
         });
-
-      </script>
+</script>
 </head>
 
 <body>
@@ -228,7 +228,7 @@
 
                 <p class="signup-link">
                   No account?
-                  <a href="" id="SignUpBtn">Sign up</a>
+                  <a href="#" id="SignUpBtn">Sign up</a>
                 </p>
         </form>
           <button id="popupCls" class="close">Chiudi
@@ -259,7 +259,7 @@
 
                   <p class="signup-link">
                     -Have an account?
-                    <a href="" id="your_account">Login</a>
+                    <a href="#" id="your_account">Login</a>
                   </p>
               </form>
               <button id="popupCls_signUp" class="close">Chiudi
