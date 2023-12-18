@@ -269,10 +269,9 @@ body{
 /* POST CARD */
 /* this card is inspired form this - https://georgefrancis.dev/ */
 
-.card {
-  width: 40%;
-  height: 100%;
 
+.card {
+  width: 100%;
   font-family: "Arial";
   padding: 1rem;
   cursor: pointer;
@@ -281,7 +280,6 @@ body{
   border:var(--dark);
   box-shadow: 0px 8px 16px 0px rgb(0 0 0 / 10%);
   margin-top: 2%;
-  
 }
 
 .card > * + * {
@@ -291,6 +289,7 @@ body{
 .card .card__content {
   color: var(--dark);
   font-size: 100%;
+  width: 100%;
 }
 
 
@@ -368,7 +367,6 @@ svg:hover path {
   color: black;
   text-decoration: none;
   cursor: pointer;
-  
 }
 
 

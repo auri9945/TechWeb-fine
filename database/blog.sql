@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Creato il: Nov 28, 2023 alle 12:59
--- Versione del server: 10.4.28-MariaDB
--- Versione PHP: 8.2.4
+-- Host: 127.0.0.1
+-- Creato il: Dic 18, 2023 alle 12:30
+-- Versione del server: 10.4.25-MariaDB
+-- Versione PHP: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,13 +24,40 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `data`
+--
+
+CREATE TABLE `data` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `colore` char(10) NOT NULL,
+  `content` longtext NOT NULL,
+  `mipiace` int(11) NOT NULL DEFAULT 0,
+  `nonmipiace` int(11) NOT NULL DEFAULT 0,
+  `subjectreference` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `data`
+--
+
+INSERT INTO `data` (`id`, `title`, `colore`, `content`, `mipiace`, `nonmipiace`, `subjectreference`) VALUES
+(9, 'titolo post', '', 'w la gena', 0, 0, 'interazione Uomo Macchina'),
+(24, 'sa', '', 'ds', 0, 0, 'Diritto delle ict'),
+(25, 'f', '', 'fe', 0, 0, 'interazione Uomo Macchina'),
+(26, 'gz', '', 'gs', 0, 0, 'interazione Uomo Macchina'),
+(27, 'titolo', '', 'dasdadad', 0, 0, 'Metodi digitali per la ricerca-sociale');
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `materie`
 --
 
 CREATE TABLE `materie` (
   `id` int(11) NOT NULL,
   `materia` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dump dei dati per la tabella `materie`
@@ -63,14 +90,35 @@ CREATE TABLE `post` (
   `user` varchar(50) NOT NULL,
   `subjects` char(255) NOT NULL,
   `content` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dump dei dati per la tabella `post`
 --
 
 INSERT INTO `post` (`id`, `user`, `subjects`, `content`) VALUES
-(1, '', 'Interazione uomo e macchina: approcci avanzati', 'prova 1');
+(1, '@sdupalepaolo', 'Interazione uomo e macchina: approcci avanzati', 'prova 1'),
+(2, '@sdupalepaoletto', 'Interazione uomo e macchina: approcci avanzati', 'prova 2'),
+(3, '@sdupalepaolettino', 'Innovazione sociale', 'torino 2023 ovunque!');
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `subject`
+--
+
+CREATE TABLE `subject` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `subject`
+--
+
+INSERT INTO `subject` (`id`, `name`) VALUES
+(1, 'Interazione Sociale'),
+(2, 'Economia di Internet');
 
 -- --------------------------------------------------------
 
@@ -83,11 +131,17 @@ CREATE TABLE `user` (
   `nickname` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
   `email` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Indici per le tabelle scaricate
 --
+
+--
+-- Indici per le tabelle `data`
+--
+ALTER TABLE `data`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indici per le tabelle `materie`
@@ -102,6 +156,12 @@ ALTER TABLE `post`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indici per le tabelle `subject`
+--
+ALTER TABLE `subject`
+  ADD PRIMARY KEY (`id`,`name`);
+
+--
 -- Indici per le tabelle `user`
 --
 ALTER TABLE `user`
@@ -113,6 +173,12 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT per la tabella `data`
+--
+ALTER TABLE `data`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
 -- AUTO_INCREMENT per la tabella `materie`
 --
 ALTER TABLE `materie`
@@ -122,7 +188,13 @@ ALTER TABLE `materie`
 -- AUTO_INCREMENT per la tabella `post`
 --
 ALTER TABLE `post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT per la tabella `subject`
+--
+ALTER TABLE `subject`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT per la tabella `user`
