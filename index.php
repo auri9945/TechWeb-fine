@@ -104,6 +104,50 @@
 
         });
 </script>
+
+
+<!--UPDATE POST-->
+<script>
+        $(document).ready(function(){
+
+          // SCRIPT POP UP CREATE POST
+          $("#cardModifica").click(function() {
+            // Prendi il popup del login tramite ID - JQuery
+            $("#myModalUpdate").show();
+          });
+
+          $("#popupClsUpdate").click(function() {
+            // Prendi il popup del login tramite ID - JQuery
+            $("#myModalUpdate").hide();
+            $("#myModalUpdate").find("#title").val('');
+            $("#myModalUpdate").find("#materie").val('');
+            $("#myModalUpdate").find("#content").val('');
+          });
+          // FINE SCRIPT POP UP UPDATE POST
+
+        });
+</script>
+
+
+<!--DELETE POST-->
+<script>
+        $(document).ready(function(){
+
+          // SCRIPT POP UP CREATE POST
+          $("#cardElimina").click(function() {
+            // Prendi il popup del login tramite ID - JQuery
+            $("#myModalDelete").show();
+          });
+
+          $("#popupClsDelete, #popupClDelete2").click(function() {
+            // Prendi il popup del login tramite ID - JQuery
+            $("#myModalDelete").hide();
+          });
+          // FINE SCRIPT POP UP DELETE POST
+
+        });
+</script>
+
 </head>
 
 <body>
@@ -275,6 +319,75 @@
         </div>
 
 
+          <!-- POP UP Update POST-->
+          <div id="myModalUpdate" class="modal">
+
+          <!-- pop up UPDATE content -->
+          <div class="modal-content">
+            
+                  <form class="form">
+                <p class="form-title">Modifa Post</p>
+                  <div class="input-container">
+                    <input type="title" placeholder="Titolo">
+                    <span>
+                    </span>
+                </div>
+                <div class="input-container">
+                    <select type="materie">
+                      <option value="materia" disabled>scegli la materia</option>
+                      <option value="materia">Materia 1</option>
+                      <option value="materia">Materia 2</option>
+                      <option value="materia">Materia 3</option>
+                      <option value="materia">Materia 4</option>
+                    </select>
+                  </div>
+                <div class="input-container">
+                    <input style="height: 200px;" 
+                    type="Content" placeholder="scrivi qui il tuo post">
+                  </div>
+                  <button type="submit" class="submit">
+                  Pubblica post
+                </button>
+            </form>
+                  <button id="popupClsUpdate" class="close">Chiudi
+                  </button>
+
+          </div>
+          </div>
+          <!-- FINE CREA POST CONTENITORE-->
+
+
+           <!-- POP UP Delete POST-->
+           <div id="myModalDelete" class="modal">
+
+          <!-- pop up DELETE content -->
+          <div class="modal-content">
+            
+          <div class="card_delete">
+            <div class="card-content_delete">
+              <p class="card-heading_delete">Sicuro di voler eliminare il post?</p>
+              <p class="card-description_delete">Eliminando il post perderei il contenuto da te creato</p>
+            </div>
+            <div class="card-button-wrapper_delete">
+              <button id="popupClsDelete" class="card-button secondary">Annulla</button>
+              <button id="popupDlsDelete"class="card-button primary">Elimina post</button> 
+            </div>
+            <button id="popupClDelete2" class="exit-button">
+              <svg height="20px" viewBox="0 0 384 512">
+                <path
+                  d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+
+
+          </div>
+          </div>
+          <!-- FINE CREA POST CONTENITORE-->
+
+
+
 
 
 
@@ -296,8 +409,8 @@
           <div class="col-7"><h3 class="card__materia"> 
             <?php print($postData -> getSubject()); ?>
           </h3></div>
-          <div class="col-2 card_modifica"> <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/></svg></div>
-          <div class="col-3 card_elimina"> <svg  xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg></div>
+          <div class="col-2 card_modifica"> <svg id="cardModifica" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/></svg></div>
+          <div class="col-3 card_elimina"> <svg id="cardElimina" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg></div>
         </div>
         <p class="card__content"> <?php print($postData -> getContent()); ?> </p>
         <div class="card__user"> <?php print($postData -> getUser()); ?></div>

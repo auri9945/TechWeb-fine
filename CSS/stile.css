@@ -266,6 +266,89 @@ body{
 .signup-link a {
   text-decoration: underline;
 }
+
+
+/* DELETE POP UP */
+
+.card_delete {
+  width: 100%;
+  height: fit-content;
+  background: var(--light);
+  border-radius: 20px;
+  display: flex;
+  flex-direction:column;
+  align-items:left;
+  justify-content:left;
+  gap: 20px;
+  padding: 30px;
+  position: relative;
+  box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.068);
+}
+.card-content_delete {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.card-heading_delete {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--dark);
+}
+.card-description_delete {
+  font-weight: 200;
+  color:var(--dark);
+}
+.card-button-wrapper_delete {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.card-button {
+  width: 30%;
+  height: 35px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+.primary {
+  background-color: rgb(255, 114, 109);
+  color: white;
+}
+.primary:hover {
+  background-color: rgb(255, 73, 66);
+}
+.secondary {
+  background-color: #ddd;
+}
+.secondary:hover {
+  background-color: rgb(197, 197, 197);
+}
+.exit-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+.exit-button:hover svg {
+  fill: black;
+}
+.exit-button svg {
+  fill: rgb(175, 175, 175);
+}
+
+
+/* FINE DELETE POP UP */
+
 /* POST CARD */
 /* this card is inspired form this - https://georgefrancis.dev/ */
 
@@ -368,6 +451,8 @@ svg:hover path {
   text-decoration: none;
   cursor: pointer;
 }
+
+
 
 
 
