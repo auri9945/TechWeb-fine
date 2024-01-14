@@ -1,11 +1,31 @@
 <?php
     class Post {
         //Attributi
+        private int $id;
         private string $user;
         private string $subject;
+        private string $subjectId;
         private string $content;
 
+        //Costruttori
+        public function __construct($id, $user, $subject, $subjectId, $content)
+        {
+            $this->id = $id;
+            $this->user = $user;
+            $this->subject = $subject;
+            $this->subjectId = $subjectId;
+            $this->content = $content;
+        }
+
         //Metodi
+        public function setId($id){
+            $this->id = $id;
+        }
+        public function getId(){
+            return $this->id;
+        }
+
+
         public function setUser($user){
             $this->user = $user;
         }
@@ -19,6 +39,14 @@
         }
         public function getSubject(){
             return $this->subject;
+        }
+
+
+        public function setSubjectId($subjectId){
+            $this->subjectId = $subjectId;
+        }
+        public function getSubjectId(){
+            return $this->subjectId;
         }
 
        
