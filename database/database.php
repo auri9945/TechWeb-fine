@@ -1,4 +1,5 @@
 <?php
+
     $host = "localhost";
     $db_name = "blog";
     $username = "root";
@@ -11,6 +12,8 @@
     } catch(PDOException $exception) {
         echo "Connection error: " . $exception->getMessage();
     }
+
+    
 
     //Estrazione dati DB
     function retrievePublicationsData() {
