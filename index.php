@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!--1.Libreria jQuery 
+  <!--1.Libreria jQuery j
     (file in remoto - La versione remota viene presa da una CDN – Content Delivery Network, 
     cioè un gruppo di server distribuiti su più aree geografiche che possiede copie di contenuti Internet e li consegna 
     in modo veloce e trasparente, )--> 
@@ -39,6 +40,22 @@
 
 
 <!--LOGIN-->
+<!--quando ultimi la registrazione esce il messaggio che la registrazione è avvenuta con successo sessione inserita nel file registrazione_query.php-->
+<?php if(isset($_SESSION['message'])): ?>
+				<div class="alert alert-<?php echo $_SESSION['message']['alert'] ?> msg"><?php echo $_SESSION['message']['text'] ?></div>
+			<script>
+				(function() {
+					// script JavaScript per rimuovere automaticamente il messaggio dopo 3 secondi
+					setTimeout(function(){
+						document.querySelector('.msg').remove();
+					},10000)
+				})();
+			</script>
+			<?php 
+				endif;
+				// clearing the message
+				unset($_SESSION['message']);
+			?>
 <script>
   $(document).ready(function(){
 
@@ -257,23 +274,24 @@
     <div class="page-content">
 
       <!-- POP UP LOGIN-->
-      <div id="myModal" class="modal">
-
+      
+ <div id="myModal" class="modal">
             <!-- pop up login content -->
-            <div class="modal-content">
-              
-        <form class="form">
+            <div class="modal-content">    
+
+        <form action="login_query.php" class="form" method="POST">	
+          
                 <p class="form-title">Sign in to your account</p>
                   <div class="input-container">
-                    <input type="email" placeholder="Enter email">
+                    <input type="email" placeholder="Enter email" name="email" required>
                     <span>
                     </span>
                 </div>
                 <div class="input-container">
-                    <input type="password" placeholder="Enter password">
+                    <input type="password" placeholder="Enter password" name="password" required>
                   </div>
-                  <button type="submit" class="submit">
-                  Sign in
+                  <button type="submit" class="submit" name="login">
+                    Login
                 </button>
 
                 <p class="signup-link">
@@ -292,18 +310,39 @@
 
           <!-- pop up SIGNUP content -->
           <div class="modal-content">
-            
-              <form class="form">
-                  <p class="form-title">Sign Up</p>
-                    <div class="input-container">
-                      <input type="email" placeholder="Enter email">
-                      <span>
-                      </span>
-                  </div>
+
+              <form  action="registrazione_query.php" class="form" method="POST">	
+                  <p class="form-title">Sign Up to your account</p>
+         
+          <!-- messaggio di errore nella registrazione-->
+         <?php 
+          if (isset($_SESSION['registrazione'])) : ?> 
+
+          <div class="alert_message error">
+            <p> 
+              <?= $_SESSION['registrazione'];
+              unset($_SESSION['registrazione'])
+              ?>
+              </p>
+          </div>
+
+          <?php endif ?>
+         
                   <div class="input-container">
-                      <input type="password" placeholder="Enter password">
+                      <input type="nickname" name="nickname" placeholder="Nickname" required>
+  
                     </div>
-                    <button type="submit" class="submit">
+
+
+                    <div class="input-container">
+                      <input type="email" name="email" placeholder="Enter email" required>
+  
+                    </div>
+
+                    <div class="input-container">
+                      <input type="password" name="password" placeholder="Enter password" required>
+                    </div>
+                    <button name="registrazione" type= "submit" class="submit">
                     Sign up
                   </button>
 
@@ -420,6 +459,7 @@
           </svg>
         </div>
       </div>
+
     </div>
       <?php 
         }
