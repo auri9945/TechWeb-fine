@@ -1,6 +1,8 @@
 <?php 
+// TODO spostare in API?
 session_start();
-require 'database\database.php';
+require 'api_server/database/database.php';
+
 
 if(ISSET($_POST['registrazione'])){
     if($_POST['nickname'] != "" || $_POST['username'] != "" || $_POST['password'] != ""){
@@ -9,7 +11,7 @@ if(ISSET($_POST['registrazione'])){
             $email = $_POST['email'];
             $password = $_POST['password'];
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "INSERT INTO `user` VALUES ('', '$nickname', '$email', '$password')";
+            $sql = "INSERT INTO user (nickname, email, password) VALUES ('$nickname', '$email', '$password')";
             $conn->exec($sql);
         }catch(PDOException $e){
             echo $e->getMessage();
