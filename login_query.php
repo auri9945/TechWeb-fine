@@ -1,8 +1,8 @@
 <?php
-
+// TODO spostare in API?
 session_start();
 
-include 'database\database.php';
+include_once 'api_server/database/database.php';
 
 if(ISSET($_POST['login'])){
     if($_POST['email'] != "" || $_POST['password'] != ""){

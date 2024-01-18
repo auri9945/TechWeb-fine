@@ -1,7 +1,8 @@
-<!-- in forse area utente -->
-!DOCTYPE html>
+
 <?php
-	include 'database\database.php';
+// TODO spostare in API?
+
+	include_once 'api_server/database/database.php';
 	session_start();
 	
 	if(!ISSET($_SESSION['user'])){

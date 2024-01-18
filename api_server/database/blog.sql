@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 14, 2024 alle 20:37
+-- Creato il: Gen 18, 2024 alle 17:51
 -- Versione del server: 10.4.25-MariaDB
 -- Versione PHP: 8.1.10
 
@@ -37,20 +37,22 @@ CREATE TABLE `materie` (
 --
 
 INSERT INTO `materie` (`id`, `materia`) VALUES
-(1, 'Interazione uomo e macchina: approcci avanzati'),
-(2, 'Sociologia della comunicazione e delle reti'),
-(3, 'Tecnologia Web: approcci avanzati'),
+(1, 'Interazione uomo-macchina: approcci avanzati'),
+(2, 'Sociologia della conoscenza e delle reti'),
+(3, 'Tecnologie Web: approcci avanzati'),
 (4, 'Economia di internet'),
-(5, 'Diritto delle ICT'),
+(5, 'Diritto delle ICT e dei media'),
 (6, 'Marketing digitale'),
 (7, 'Metodi digitali per la ricerca sociale'),
 (8, 'Social Media Management'),
-(9, 'Sistemi mediali'),
+(9, 'Sistemi mediali e ICT'),
 (10, 'Web sicuro e personalizzato'),
 (11, 'Design of interactive system'),
 (12, 'Programmazione mobile: Android'),
 (14, 'Green Economy e tecnologie digitali'),
-(15, 'Management della comunicazione');
+(15, 'Management della comunicazione'),
+(16, 'Psicologia cognitiva e del lavoro'),
+(17, 'Innovazione sociale');
 
 -- --------------------------------------------------------
 
@@ -62,17 +64,17 @@ CREATE TABLE `post` (
   `id` int(11) NOT NULL,
   `user` varchar(50) NOT NULL,
   `subject` int(11) NOT NULL,
-  `content` varchar(255) NOT NULL
+  `content` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dump dei dati per la tabella `post`
 --
 
-INSERT INTO `post` (`id`, `user`, `subject`, `content`) VALUES
-(1, '', 1, 'prova 1'),
-(23, '', 9, 'nuovo post fico'),
-(25, '', 6, 'contenuto test');
+INSERT INTO `post` (`id`, `user`, `subject`, `content`, `title`) VALUES
+(48, '', 4, 'Ciao a tutti ragazzi! Oggi sono molto combattuto.. l\'esame di economia non è andato come mi aspettavo. Lo ridarò nel prossimo appello ma nel frattempo mandatemi tante vibes positive :)', 'Economia'),
+(49, '', 3, 'Ragazzi! Sapete a che ora c\'è la lezione?', 'Info corso Tecnologie Web');
 
 -- --------------------------------------------------------
 
@@ -88,6 +90,13 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dump dei dati per la tabella `user`
+--
+
+INSERT INTO `user` (`id`, `nickname`, `password`, `email`) VALUES
+(2, 'Ilaria', '1234', 'test@test.com');
+
+--
 -- Indici per le tabelle scaricate
 --
 
@@ -95,7 +104,7 @@ CREATE TABLE `user` (
 -- Indici per le tabelle `materie`
 --
 ALTER TABLE `materie`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
 -- Indici per le tabelle `post`
@@ -118,19 +127,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT per la tabella `materie`
 --
 ALTER TABLE `materie`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT per la tabella `post`
 --
 ALTER TABLE `post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT per la tabella `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
