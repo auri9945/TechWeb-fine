@@ -1,4 +1,9 @@
-<?php session_start(); ?>
+<?php session_start();?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -56,6 +61,7 @@
         ?>
 
   <!-- script con funzioni condivise -->
+  
   <script src="script/app.js"></script>
   <!-- script leggi post -->
   <script src="script/read-posts.js"></script>
@@ -70,47 +76,52 @@
   <!-- script update post -->
   <script src="script/update-post.js"></script>
 
-  <script>
-    $(document).ready(function(){
-
-      // SCRIPT POP UP LOGIN
-      $("#your_account").click(function() {
-        // prendi il popup del login per mostrarlo tramite ID - JQuery
-        $("#myModal").show();
-      });
-
-      $("#popupCls").click(function() {
-        // Prendi il popup del login per nasconderlo tramite ID - JQuery
-        $("#myModal").hide();
-        $("#myModal").find("#username").val('');
-        $("#myModal").find("#password").val('');
-      });
-      // FINE SCRIPT POP UP LOGIN
-
-    });
-
-  </script>
-
-<!-- SIGN UP -->
-  <script>
+<script>
   $(document).ready(function(){
 
-    // SCRIPT POP UP SIGN UP POST
-    $("#SignUpBtn").click(function() {
-      // prendi il popup del SIGNUP tramite ID - JQuery
-      $("#myModal").hide();
-      $("#myModal_signUp").show();
-    });
+// SCRIPT POP UP LOGIN
+$("#your_account").click(function() {
+  // prendi il popup del login per mostrarlo tramite ID - JQuery
+  $("#myModal").show();
+});
 
-    $("#popupCls_signUp").click(function() {
-      // prendi il popup del SIGNUP tramite ID - JQuery
-      $("#myModal_signUp").hide();
-      $("#myModal_signUp").find("#username").val('');
-      $("#myModal_signUp").find("#password").val('');
-    });
-    // FINE SCRIPT POP UP CREATE POST
+$("#popupCls").click(function() {
+  // Prendi il popup del login per nasconderlo tramite ID - JQuery
+  $("#myModal").hide();
+  $("#myModal").find("#username").val('');
+  $("#myModal").find("#password").val('');
+});
+// FINE SCRIPT POP UP LOGIN
 
-  });
+});
+
+</script>
+
+
+<script>
+  $(document).ready(function(){
+
+// SCRIPT POP UP SIGN UP POST
+$("#SignUpBtn").click(function() {
+  // prendi il popup del SIGNUP tramite ID - JQuery
+  $("#myModal").hide();
+  $("#myModal_signUp").show();
+});
+
+$("#popupCls_signUp").click(function() {
+  // prendi il popup del SIGNUP tramite ID - JQuery
+  $("#myModal_signUp").hide();
+  $("#myModal_signUp").find("#username").val('');
+  $("#myModal_signUp").find("#password").val('');
+});
+
+$('#yourAccountLink').click(function(){
+  $("#myModal_signUp").hide()
+  $("#myModal").show()
+})
+// FINE SCRIPT POP UP CREATE POST
+
+});
 
 </script>
 
@@ -200,6 +211,17 @@
 
   </header>
 
+<div>
+  <?php
+        if(isset($_SESSION['login'] )) 
+        { 
+          echo "login effettuato";
+        }else{
+          echo "login non effettuato";
+        }
+
+  ?>
+</div>
 
 <!-- CONTENUTO DELLA PAGINA -->     
   <div class="container">
@@ -211,7 +233,7 @@
             <!-- pop up contenuto login -->
             <div class="modal-content">    
 
-        <form action="login_query.php" class="form" method="POST">	
+        <form action="api_server\loginSystem.php" class="form" method="POST">	
           
                 <p class="form-title">Sign in to your account</p>
                   <div class="input-container">
@@ -282,7 +304,7 @@
 
                   <p class="signup-link">
                     Hai già un account?
-                    <a href="#" id="your_account">Login</a>
+                    <a href="#" id="yourAccountLink">Login</a>
                   </p>
               </form>
               <button id="popupCls_signUp" class="close">Chiudi
