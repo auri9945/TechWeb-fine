@@ -1,32 +1,52 @@
 <?php
+    session_start();
 
+    header("Content-Type: application/json; charset=UTF-8");
 
-header("Content-Type: application/json; charset=UTF-8");
+    // includo classe per gestire dati
+    include_once "database/database.php";
+    include_once "model/user.php";
 
-// includo classe per gestire dati
-include_once "database/database.php";
-include_once "model/users.php";
+    // connessione al DB
+    $database = new Database();
+    $db = $database->getConnection();
 
-// connessione al DB
-$database = new Database();
-$db = $database->getConnection();
+    // recupero campi da POST e verifico che esistano
+    $email = isset($_POST['email']) ? $_POST['email'] : "";
+    $password = isset($_POST['password']) ? $_POST['password'] : "";
 
-// istanza post
-$session = new Users($db);
-$dataJson=$_POST['login'];
+    // istanza post
+    $user = new User($db);
+    $user->setEmail($email);
+    $user->setPassword($password);
+    
+    $stmt = $user->login();
 
+    // TODO mostrare messaggi di errore all'utente
+    if ($stmt->rowCount() > 0) {
 
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            if($password != $row['password']) {
+                http_response_code(401);
+                // creo un oggetto JSON costituito dalla coppia message: testo-del-messaggio
+                echo json_encode(array("message" => "Password errata"));
+                break;
+                exit;
+            }
 
-if ($session->login()) { 
-    http_response_code(200); 
-    // creo un oggetto JSON costituito dalla coppia message: testo-del-messaggio
-    echo json_encode(array("message" => "Login effettuato"));
+            $_SESSION['email'] = $row['email'];
+            $_SESSION['nickname'] = $row['nickname'];
+        }
+
+        http_response_code(200); 
+        // creo un oggetto JSON costituito dalla coppia message: testo-del-messaggio
+        echo json_encode(array("message" => "Login effettuato"));
+    } else { 
+        http_response_code(401);
+        // creo un oggetto JSON costituito dalla coppia message: testo-del-messaggio
+        echo json_encode(array("message" => "Email errata"));
     }
-else { 
-    http_response_code(503);
-    // creo un oggetto JSON costituito dalla coppia message: testo-del-messaggio
-    echo json_encode(array("message" => "Non è stato possibile effettuare il login"));
-}
 
-
+    header('Location:../index.php');
+    exit;
 ?>

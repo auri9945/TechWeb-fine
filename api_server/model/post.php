@@ -1,7 +1,7 @@
 <?php
     class Post {
 
-        // connessione
+        // connessione al DB
         private $conn;
 
         // attributi
@@ -110,9 +110,11 @@
 
         // creazione di un post
         function create(){
+            // preparo la query
             $query = "INSERT INTO post (user, subject, content, title) VALUES (?,?,?,?)";
             $stmt= $this->conn->prepare($query);
             
+            // inserisco i parametri
             $stmt->bindParam(1, $this->user);
             $stmt->bindParam(2, $this->subject);
             $stmt->bindParam(3, $this->content);
@@ -157,7 +159,7 @@
             $stmt->bindParam(':title', $this->title);
 
             // eseguo la query
-		    $stmt->execute(); // NB $stmt conterrà il risultato dell'esecuzione della query
+		    $stmt->execute();
 
 		    return $stmt;
         }

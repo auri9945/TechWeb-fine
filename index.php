@@ -1,9 +1,5 @@
 <?php session_start();?>
 
-
-
-
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -44,6 +40,7 @@
 
   <!-- LOGIN -->
   <!-- quando ultimi la registrazione esce il messaggio che la registrazione è avvenuta con successo sessione inserita nel file registrazione_query.php -->
+  <!-- TODO MODIFICARE -->
   <?php if(isset($_SESSION['message'])): ?>
           <div class="alert alert-<?php echo $_SESSION['message']['alert'] ?> msg"><?php echo $_SESSION['message']['text'] ?></div>
         <script>
@@ -73,57 +70,14 @@
   <script src="script/search-post.js"></script>
   <!-- script creazione post -->
   <script src="script/create-post.js"></script>
-  <!-- script update post -->
+  <!-- script aggiornamento post -->
   <script src="script/update-post.js"></script>
-
-<script>
-  $(document).ready(function(){
-
-// SCRIPT POP UP LOGIN
-$("#your_account").click(function() {
-  // prendi il popup del login per mostrarlo tramite ID - JQuery
-  $("#myModal").show();
-});
-
-$("#popupCls").click(function() {
-  // Prendi il popup del login per nasconderlo tramite ID - JQuery
-  $("#myModal").hide();
-  $("#myModal").find("#username").val('');
-  $("#myModal").find("#password").val('');
-});
-// FINE SCRIPT POP UP LOGIN
-
-});
-
-</script>
-
-
-<script>
-  $(document).ready(function(){
-
-// SCRIPT POP UP SIGN UP POST
-$("#SignUpBtn").click(function() {
-  // prendi il popup del SIGNUP tramite ID - JQuery
-  $("#myModal").hide();
-  $("#myModal_signUp").show();
-});
-
-$("#popupCls_signUp").click(function() {
-  // prendi il popup del SIGNUP tramite ID - JQuery
-  $("#myModal_signUp").hide();
-  $("#myModal_signUp").find("#username").val('');
-  $("#myModal_signUp").find("#password").val('');
-});
-
-$('#yourAccountLink').click(function(){
-  $("#myModal_signUp").hide()
-  $("#myModal").show()
-})
-// FINE SCRIPT POP UP CREATE POST
-
-});
-
-</script>
+  <!-- script registrazione -->
+  <script src="script/signup.js"></script>
+  <!-- script accesso -->
+  <script src="script/login.js"></script>
+  <!-- script disconnessione -->
+  <script src="script/logout.js"></script>
 
 </head>
 
@@ -144,7 +98,11 @@ $('#yourAccountLink').click(function(){
       
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="index.php">Homepage</a>
+            <a class="nav-link" aria-current="page" href="index.php">
+              <i class="fa fa-home" aria-hidden="true"></i>
+              Homepage
+            </a>
+            
           </li>      
         </ul>
           
@@ -156,12 +114,18 @@ $('#yourAccountLink').click(function(){
               </span>
             </button>
         </form>
-        <button class="btn" id="your_account"> 
-          <span title="Login">
-            <i class="fa fa-user-o" aria-hidden="true"></i>
-          </span>
-        </button>
-
+        <?php 
+          if(!isset($_SESSION["nickname"])) {
+            echo '<button class="btn" id="your_account"> 
+                    <span title="Login">
+                      <i class="fa fa-user-o" aria-hidden="true"></i>
+                    </span>
+                  </button>';
+          } else {
+            echo '<button class="btn" id="yourAccountLogout">Logout</button>';
+          }
+          
+        ?>
       </div>
     </nav>
     <!-- FINE NAVBAR CON LIBRERIA BOOTSTRAP -->
@@ -170,10 +134,20 @@ $('#yourAccountLink').click(function(){
   <!-- CREA POST CONTENITORE -->
 
   <div class="Crea_post ">
-          <h1>CREA IL TUO POST</h1>
-            <p>esprimi (non sopprimi) la tua opinione qui su Cime blog!</p>
+          <h1>Dai vita alla tua opinione</h1>
+            <p>Raccolta di contenuti scritti dai nostri utenti. <br> Esprimi la tua opinione qui su Cime blog!</p>
           <div>
-            <button href="#" id="myBtnPost" class="myBtnPost btn-post"> + Crea Post</button>
+          <?php
+            // se sono loggato abilito il bottone per la creazione dei post, altrimenti rimando l'utente al login
+            $buttonId = '';
+            if(isset($_SESSION["email"]) && isset($_SESSION["nickname"])) { 
+              $buttonId = 'myBtnPost';
+            } else {
+              $buttonId = 'myBtnPostLogin';
+            }
+            echo '<button id="'.$buttonId.'" class="myBtnPost btn-post">+ Crea Post</button>';
+          ?>
+            
           </div>
         </div>
 
@@ -211,18 +185,6 @@ $('#yourAccountLink').click(function(){
 
   </header>
 
-<div>
-  <?php
-        if(isset($_SESSION['login'] )) 
-        { 
-          echo "login effettuato";
-        }else{
-          echo "login non effettuato";
-        }
-
-  ?>
-</div>
-
 <!-- CONTENUTO DELLA PAGINA -->     
   <div class="container">
     <div class="page-content">
@@ -233,24 +195,24 @@ $('#yourAccountLink').click(function(){
             <!-- pop up contenuto login -->
             <div class="modal-content">    
 
-        <form action="api_server\loginSystem.php" class="form" method="POST">	
+        <form id="loginForm" action="api_server/loginSystem.php" class="form" method="POST">	
           
-                <p class="form-title">Sign in to your account</p>
+                <p class="form-title">Accedi al tuo account</p>
                   <div class="input-container">
-                    <input type="email" placeholder="Enter email" name="email" required>
+                    <input type="email" placeholder="Email" name="email" required autocomplete="off">
                     <span>
                     </span>
                 </div>
                 <div class="input-container">
-                    <input type="password" placeholder="Enter password" name="password" required>
+                    <input type="password" placeholder="Password" name="password" required>
                   </div>
-                  <button type="submit" class="submit" name="login">
-                    Login
+                  <button type="submit" class="submit">
+                    Accedi
                 </button>
 
                 <p class="signup-link">
                   No account?
-                  <a href="#" id="SignUpBtn">Sign up</a>
+                  <a href="#" id="SignUpBtn">Registrati</a>
                 </p>
         </form>
           <button id="popupCls" class="close">Chiudi
@@ -267,44 +229,26 @@ $('#yourAccountLink').click(function(){
           <!-- pop up SIGNUP content -->
           <div class="modal-content">
 
-              <form  action="registrazione_query.php" class="form" method="POST">	
-                  <p class="form-title">Sign Up to your account</p>
-         
-          <!-- messaggio di errore nella registrazione -->
-         <?php 
-          if (isset($_SESSION['registrazione'])) : ?> 
-
-          <div class="alert_message error">
-            <p> 
-              <?= $_SESSION['registrazione'];
-              unset($_SESSION['registrazione'])
-              ?>
-              </p>
-          </div>
-
-          <?php endif ?>
-         
+              <form  class="form" id="signupForm">	
+                  <p class="form-title">Registrati ora</p>        
                   <div class="input-container">
-                      <input type="nickname" name="nickname" placeholder="Nickname" required>
-  
+                      <input type="nickname" id="signupNickname" name="nickname" placeholder="Nickname *" required autocomplete="off">
                     </div>
 
 
                     <div class="input-container">
-                      <input type="email" name="email" placeholder="Enter email" required>
-  
+                      <input type="email" id="signupEmail" name="email" placeholder="Email *" required autocomplete="off">
                     </div>
-
                     <div class="input-container">
-                      <input type="password" name="password" placeholder="Enter password" required>
+                      <input type="password" id="signupPassword" name="password" placeholder="Password *" required>
                     </div>
                     <button name="registrazione" type= "submit" class="submit">
-                    Sign up
+                    Registrati
                   </button>
 
                   <p class="signup-link">
                     Hai già un account?
-                    <a href="#" id="yourAccountLink">Login</a>
+                    <a href="#" id="yourAccountLink">Accedi</a>
                   </p>
               </form>
               <button id="popupCls_signUp" class="close">Chiudi
