@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 18, 2024 alle 17:51
+-- Creato il: Gen 20, 2024 alle 01:56
 -- Versione del server: 10.4.25-MariaDB
 -- Versione PHP: 8.1.10
 
@@ -73,8 +73,9 @@ CREATE TABLE `post` (
 --
 
 INSERT INTO `post` (`id`, `user`, `subject`, `content`, `title`) VALUES
-(48, '', 4, 'Ciao a tutti ragazzi! Oggi sono molto combattuto.. l\'esame di economia non è andato come mi aspettavo. Lo ridarò nel prossimo appello ma nel frattempo mandatemi tante vibes positive :)', 'Economia'),
-(49, '', 3, 'Ragazzi! Sapete a che ora c\'è la lezione?', 'Info corso Tecnologie Web');
+(48, 'Ilaria', 4, 'Ciao a tutti ragazzi! Oggi sono molto combattuto.. l\'esame di economia non è andato come mi aspettavo. Lo ridarò nel prossimo appello ma nel frattempo mandatemi tante vibes positive :)', 'Economia'),
+(49, 'Ilaria', 3, 'Salve :)\nVi ricordo che la lezione di domani si terrà in aula C1.\nBuona serata ragazzi', 'Info corso Tecnologie Web'),
+(53, 'Ilaria', 2, 'Tra qualche giorno ho l\'esame di sociologia... sono in ansia siccome non so cosa aspettarmi :(\nSpero vada tutto bene.\nUn saluto a voi tutti', 'Esameeeee');
 
 -- --------------------------------------------------------
 
@@ -117,7 +118,8 @@ ALTER TABLE `post`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `nickname` (`nickname`);
+  ADD UNIQUE KEY `nickname` (`nickname`),
+  ADD UNIQUE KEY `AK_User_email` (`email`);
 
 --
 -- AUTO_INCREMENT per le tabelle scaricate
@@ -133,13 +135,13 @@ ALTER TABLE `materie`
 -- AUTO_INCREMENT per la tabella `post`
 --
 ALTER TABLE `post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT per la tabella `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

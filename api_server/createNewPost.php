@@ -1,4 +1,6 @@
 <?php
+  session_start();
+
   header("Content-Type: application/json; charset=UTF-8");
 
   // includo classe per gestire dati
@@ -15,7 +17,7 @@
   $dataJson=$_POST['newPost'];
 
   // inserisco i valori nelle variabili d'istanza dell'oggetto post
-  $post->setUser('');
+  $post->setUser($_SESSION["nickname"]);
   $post->setTitle($dataJson['titolo']);
   $post->setSubject($dataJson['materia']);
   $post->setContent($dataJson['contenuto']);
@@ -26,5 +28,5 @@
   http_response_code(201);
 
   // invio il messaggio in HTTP response
-  echo json_encode(array("message" => "IPost creato"));
+  echo json_encode(array("message" => "Post creato"));
 ?>

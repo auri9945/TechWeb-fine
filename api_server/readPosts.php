@@ -1,4 +1,6 @@
 <?php 
+    session_start();
+
     header("Content-Type: application/json; charset=UTF-8");
 
     // includo classe per gestire dati
@@ -19,6 +21,8 @@
     $post_list["postList"] = array();
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $currentUser = isset($_SESSION["nickname"]) ? $_SESSION["nickname"] : "";
+
         // costruisco un array associativo per ogni post
         $single_post = array(
             "id" => $row['id'],
@@ -26,7 +30,8 @@
             "id_materia" => $row['id_materia'],
             "materia" => $row['materia'],
             "content" => $row['content'],
-            "title" => $row['title']
+            "title" => $row['title'],
+            "createdByCurrentUser" => ($row['user'] == $currentUser)
         );
 	
         // l'array viene aggiunto al fondo di post_list
