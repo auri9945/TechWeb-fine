@@ -1,4 +1,4 @@
-// Update post
+// update post
 $(document).ready(function(){
 
     // SCRIPT POP UP UPDATE POST
@@ -38,11 +38,14 @@ $(document).ready(function(){
             return false;
         }
 
+        // recupero i valori degli elementi e escludo gli spazi in eccesso
         var titoloNuovoPost = $("#modificaPostTitle").val().trim();
         var idMateriaNuovoPost = $("#modificaPostSubject").val();
         var contenutoNuovoPost = $("#modificaPostContent").val().trim();
+        // recupero il valore dell'attributo salvato sul bottone del form
         var idPost = $(this).find("button[id='modificaPostSubmit']").attr("data-post-id");
         
+        // richiamo l'API per l'aggiornamento del post 
         $.ajax({
             url: 'api_server/updatePost.php',
             dataType: "json",

@@ -12,6 +12,7 @@ $(document).ready(function(){
         });
     });
 
+    // bottone che apre il popup per la creazione dei post
     $("#create_post_login_btn").click(function() {
         document.getElementById('login_err_container').style.visibility = "hidden";
         $("#login_err_container").hide();

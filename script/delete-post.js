@@ -16,6 +16,7 @@ $(document).ready(function(){
         $("#myModalDelete").show();
     });
 
+    // popup per la cancellazione dei post
     $("#popupDlsDelete").click(function() {
         var postId = $(this).attr("data-post-id");
         $.ajax({
