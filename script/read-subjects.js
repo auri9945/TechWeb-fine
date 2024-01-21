@@ -1,5 +1,7 @@
+// lettura delle materie
 $(document).ready(function() {
 
+    // richiamo l'API per ottenere le materie dal DB
     $.ajax({
         url: 'api_server/readSubjects.php',
         type: 'GET',
@@ -14,6 +16,7 @@ $(document).ready(function() {
   
   });
 
+  // funzione utilizzata per riempire le tendine delle materie
   function fillSubjects(subjectList) {
     var selectOptions = '<option value="" disabled selected>Scegli la materia</option>';
 

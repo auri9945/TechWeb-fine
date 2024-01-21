@@ -4,6 +4,7 @@ $(document).ready(function() {
     e.preventDefault();
     var keywords = $(this).find("input[name='searchKeywords']").val();
 
+    // richiamo l'API per la ricerca
     $.ajax({
       url: 'api_server/searchPost.php',
       dataType: "json",
