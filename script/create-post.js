@@ -2,22 +2,22 @@
 $(document).ready(function(){
 
     // SCRIPT POP UP CREATE POST
-    $("#myBtnPost").click(function() {
+    $("#create_post_btn").click(function() {
         // Prendi il popup del login tramite ID - JQuery
-        $("#myModalPost").show();
+        $("#modal_post").show();
         // disattivo scrolling sul body
         document.body.style.overflow = 'hidden';
     });
 
     $("#popupClsPost").click(function() {
         // prendi il popup del POST tramite ID - JQuery
-        $("#myModalPost").hide();
+        $("#modal_post").hide();
         // attivo scrolling sul body
         document.body.style.overflow = '';
-        resetPopUpFields("createPostTitle", "createPostSubject", "createPostContent");
+        resetPostPopUpFields("createPostTitle", "createPostSubject", "createPostContent");
     });
 
-    $(document).on('submit', '#createForm', function(e) {
+    $(document).on('submit', '#create_post_form', function(e) {
         // evito che il submit ricarichi la pagina
         e.preventDefault();
 
@@ -44,7 +44,7 @@ $(document).ready(function(){
             success: function(data) {
                 console.log(data.message);
                 $("#popupClsPost").click();
-                resetPopUpFields("createPostTitle", "createPostSubject", "createPostContent");
+                resetPostPopUpFields("createPostTitle", "createPostSubject", "createPostContent");
                 loadPosts();
             }
         });

@@ -11,9 +11,11 @@
     $database = new Database();
     $db = $database->getConnection();
 
+    $loginData = isset($_POST['login']) ? $_POST['login'] : "";
+
     // recupero campi da POST e verifico che esistano
-    $email = isset($_POST['email']) ? $_POST['email'] : "";
-    $password = isset($_POST['password']) ? $_POST['password'] : "";
+    $email = $loginData ? $loginData['email'] : "";
+    $password = $loginData ? $loginData['password'] : "";
 
     // istanza post
     $user = new User($db);
@@ -21,31 +23,25 @@
     $user->setPassword($password);
     
     $stmt = $user->login();
-
-    // TODO mostrare messaggi di errore all'utente
+    
     if ($stmt->rowCount() > 0) {
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            if($password != $row['password']) {
-                http_response_code(401);
-                // creo un oggetto JSON costituito dalla coppia message: testo-del-messaggio
-                echo json_encode(array("message" => "Errore in fase di login: ".$e->getMessage()));
-                break;
-                exit;
-            }
-
+        if($password != $row['password']) {
+            http_response_code(401);
+            // creo un oggetto JSON costituito dalla coppia message: testo-del-messaggio
+            echo json_encode(array("message" => "Password errata"));
+        } else {
             $_SESSION['email'] = $row['email'];
             $_SESSION['nickname'] = $row['nickname'];
+        
+            http_response_code(200); 
+            // creo un oggetto JSON costituito dalla coppia message: testo-del-messaggio
+            echo json_encode(array("message" => "Login effettuato"));
         }
-
-        http_response_code(200); 
-        // creo un oggetto JSON costituito dalla coppia message: testo-del-messaggio
-        echo json_encode(array("message" => "Login effettuato"));
     } else { 
         http_response_code(401);
         // creo un oggetto JSON costituito dalla coppia message: testo-del-messaggio
         echo json_encode(array("message" => "Email errata"));
     }
-
-
 ?>

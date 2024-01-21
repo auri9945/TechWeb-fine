@@ -1,6 +1,6 @@
 // ricerca post
 $(document).ready(function() {
-  $(document).on('submit', '#searchForm', function(e) {
+  $(document).on('submit', '#search_form', function(e) {
     e.preventDefault();
     var keywords = $(this).find("input[name='searchKeywords']").val();
 

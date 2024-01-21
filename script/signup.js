@@ -3,13 +3,31 @@ $(document).ready(function() {
     // SCRIPT POP UP SIGN UP POST
     $("#SignUpBtn").click(function() {
         // prendi il popup del SIGNUP tramite ID - JQuery
+        document.getElementById('login_err_container').style.visibility = "hidden";
+        $("#login_err_container").hide();
         $("#myModal").hide();
+        $("#loginPassword").val('');
+        $("#loginEmail").val('');
+
+        // nascondo totalmente il div contenitore dei messaggi di errore
+        document.getElementById('signupSuccContainer').style.visibility = "hidden";
+        $("#signupSuccContainer").hide();
+        document.getElementById('signupErrContainer').style.visibility = "hidden";
+        $("#signupErrContainer").hide();
+
+        // mostro il popup di registrazione
         $("#myModal_signUp").show();
     });
     
     $("#popupCls_signUp").click(function() {
         // prendi il popup del SIGNUP tramite ID - JQuery
         $("#myModal_signUp").hide();
+        
+        document.getElementById('signupSuccContainer').style.visibility = "hidden";
+        $("#signupSuccContainer").hide();
+        document.getElementById('signupErrContainer').style.visibility = "hidden";
+        $("#signupErrContainer").hide();
+
         $("#signupNickname").val('');
         $("#signupEmail").val('');
         $("#signupPassword").val('');
@@ -17,6 +35,16 @@ $(document).ready(function() {
     
     $('#yourAccountLink').click(function(){
         $("#myModal_signUp").hide();
+
+        document.getElementById('signupSuccContainer').style.visibility = "hidden";
+        $("#signupSuccContainer").hide();
+        document.getElementById('signupErrContainer').style.visibility = "hidden";
+        $("#signupErrContainer").hide();
+
+        $("#signupNickname").val('');
+        $("#signupEmail").val('');
+        $("#signupPassword").val('');
+
         $("#myModal").show();
     })
 
@@ -38,13 +66,27 @@ $(document).ready(function() {
             data: {signup: signupObj},
             success: function(data) {
                 console.log(data.message);
-                $("#popupCls_signUp").click();
                 loadPosts();
-                alert(data.message);
+                document.getElementById('signupErrContainer').style.visibility = "hidden";
+                $("#signupErrContainer").hide();
+
+                $("#signupNickname").val('');
+                $("#signupEmail").val('');
+                $("#signupPassword").val('');
+
+                $("#signupSuccContainer").text(data.message);
+                document.getElementById('signupSuccContainer').style.removeProperty("visibility");
+                $("#signupSuccContainer").show();
             },
             error: function(data) {
                 console.log(data);
-                alert("Errore in fase di registrazione. Nickname o Email già utilizzati.");
+                
+                document.getElementById('signupSuccContainer').style.visibility = "hidden";
+                $("#signupSuccContainer").hide();
+
+                $("#signupErrContainer").text(data.responseJSON.message);
+                document.getElementById('signupErrContainer').style.removeProperty("visibility");
+                $("#signupErrContainer").show();
             }
         });
     });

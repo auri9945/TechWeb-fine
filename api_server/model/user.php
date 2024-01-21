@@ -62,7 +62,6 @@
             // inserisco i parametri
             $stmt->bindParam(':email', $this->email);
             
-
             // eseguo la query
             $stmt->execute();
 

@@ -2,7 +2,10 @@
 $(document).ready(function(){
 
     // SCRIPT POP UP LOGIN
-    $("#your_account").click(function() {
+    $("#login_btn").click(function() {
+      document.getElementById('login_err_container').style.visibility = "hidden";
+      $("#login_err_container").hide();
+
       // prendi il popup del login per mostrarlo tramite ID - JQuery
       $("#myModal").show();
     });
@@ -10,8 +13,10 @@ $(document).ready(function(){
     $("#popupCls").click(function() {
       // Prendi il popup del login per nasconderlo tramite ID - JQuery
       $("#myModal").hide();
-      $("#myModal").find("#username").val('');
-      $("#myModal").find("#password").val('');
+      $("#loginEmail").val('');
+      $("#loginPassword").val('');
+      document.getElementById('login_err_container').style.visibility = "hidden";
+      $("#login_err_container").hide();
     });
     // FINE SCRIPT POP UP LOGIN
      
@@ -21,8 +26,8 @@ $(document).ready(function(){
 
       // costruisco un oggetto con i campi del popup#popupCls_signUp
       var loginObj = {};
-      loginObj.email = $("#username").val();
-      loginObj.password = $("#password").val().trim();
+      loginObj.email = $("#loginEmail").val().trim();
+      loginObj.password = $("#loginPassword").val().trim();
 
       // chiamata per l'inserimento a DB
       $.ajax({
@@ -31,14 +36,19 @@ $(document).ready(function(){
           type: 'POST',
           data: {login: loginObj},
           success: function(data) {
-              console.log(data.message);
-              $("#popupCls").click();
-              loadPosts();
-              alert(data.message);
+              /*console.log(data.message);
+              $("#popupCls").click();*/
+              location.reload(true);
           },
           error: function(data) {
+            if(data.responseJSON) {
+              console.log(data.responseJSON.message);
+              $("#login_err_container").text(data.responseJSON.message);
+              document.getElementById('login_err_container').style.removeProperty("visibility");
+              $("#login_err_container").show();
+            } else {
               console.log(data);
-              alert("Errore in fase di login. Email o Password errata");
+            }
           }
       });
     });

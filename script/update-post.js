@@ -7,7 +7,7 @@ $(document).ready(function(){
         $("#myModalUpdate").hide();
         // attivo scrolling sul body
         document.body.style.overflow = '';
-        resetPopUpFields("modificaPostTitle", "modificaPostSubject", "modificaPostContent");
+        resetPostPopUpFields("modificaPostTitle", "modificaPostSubject", "modificaPostContent");
         $("#modificaPostSubmit").attr("data-post-id", "");
     });
 
@@ -57,7 +57,7 @@ $(document).ready(function(){
                 console.log(data.message);
                 loadPosts();
                 $("#myModalUpdate").hide();
-                resetPopUpFields("modificaPostTitle", "modificaPostSubject", "modificaPostContent");
+                resetPostPopUpFields("modificaPostTitle", "modificaPostSubject", "modificaPostContent");
                 $("#modificaPostSubmit").attr("data-post-id", "");
             },
             error: function(data) {
