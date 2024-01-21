@@ -82,7 +82,7 @@ function popUpFieldsAreValid(idCampoTitolo, idCampoMateria, idCampoContenuto) {
 }
 
 // svuoto i campi dei pop up, recuperati tramite parametri
-function resetPopUpFields(idCampoTitolo, idCampoMateria, idCampoContenuto) {
+function resetPostPopUpFields(idCampoTitolo, idCampoMateria, idCampoContenuto) {
     $('#'+idCampoTitolo).val('');
     document.getElementById(idCampoTitolo).style.removeProperty("border-color");
     

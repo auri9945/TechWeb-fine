@@ -1,6 +1,7 @@
 <?php
     class Materia {
 
+        // connessione al DB
         private $conn;
 
         // attributi

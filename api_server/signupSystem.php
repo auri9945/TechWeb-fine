@@ -38,7 +38,18 @@
         // setto il codice di ritorno HTTP a 409 - conflitto
         http_response_code(409);
 
+        $errorDetail = '';
+
+        /* se il messaggio di errore del DB contiene le parole nickname o email, 
+        *  inserisco le informazioni nel messaggio
+        */
+        if(str_contains($e->getMessage(), 'nickname')) {
+            $errorDetail = ': nickname già utilizzato';
+        } else if (str_contains($e->getMessage(), 'email')) {
+            $errorDetail = ': mail già registrata';
+        }
+
         // invio il messaggio in HTTP response
-        echo json_encode(array("message" => "Errore in fase di registrazione: ".$e->getMessage()));
+        echo json_encode(array("message" => "Errore in fase di registrazione".$errorDetail));
     }
 ?>
