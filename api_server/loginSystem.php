@@ -29,7 +29,7 @@
             if($password != $row['password']) {
                 http_response_code(401);
                 // creo un oggetto JSON costituito dalla coppia message: testo-del-messaggio
-                echo json_encode(array("message" => "Password errata"));
+                echo json_encode(array("message" => "Errore in fase di login: ".$e->getMessage()));
                 break;
                 exit;
             }
@@ -47,6 +47,5 @@
         echo json_encode(array("message" => "Email errata"));
     }
 
-    header('Location:../index.php');
-    exit;
+
 ?>

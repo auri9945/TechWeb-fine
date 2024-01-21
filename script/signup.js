@@ -24,7 +24,7 @@ $(document).ready(function() {
         // evito che il submit ricarichi la pagina
         e.preventDefault();
 
-        // costruisco un oggetto con i campi del popup
+        // costruisco un oggetto con i campi del popup#popupCls_signUp
         var signupObj = {};
         signupObj.nickname = $("#signupNickname").val().trim();
         signupObj.email = $("#signupEmail").val();

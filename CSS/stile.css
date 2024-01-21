@@ -1,6 +1,11 @@
-   :root{
-   -webkit-text-size-adjust: 100%;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root{
+    --webkit-text-size-adjust: 100%;
+    --webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     --border-radius: 0.75rem;
     --primary-color: #7257fa;
     --secondary-color: #3c3852;
@@ -101,7 +106,22 @@ body{
   color: var(--light);
 }
 
+.button4 {border-radius: 12px;
+  
+  border: none; /* Remove borders */
+  background-color: var(--primary-color);
+  color: var(--light); /* White text */
+  padding: 12px 12px; /* Some padding */
+  font-size: 21px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+  margin-left: 15px;
+  
+}
 
+.button4:hover {
+  background-color: var(--pink);
+  color: var(--light);
+}
 
 .Crea_post{
   width: 100%;
@@ -463,11 +483,62 @@ svg:hover path {
   cursor: pointer;
 }
 
+@media (max-width: 700px){
+.modal {
+    --bs-modal-margin: 1.75rem;
+    --bs-modal-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    width: 100%;
 
+}
 
+  .modal-content {
+    background-color: var(--light);
+    border: 1px solid var(--dark);
+    width: 85%;
+    margin-right: 5%;
+    margin-left: 5%;
+    display: flex;
+    text-align: center;
+}
 
+.submit {
+  display: block;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  background-color: var(--indigo);
+  color: #ffffff;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  width: 50%;
+  border-radius: 0.5rem;
+  text-transform: uppercase;
+}
 
+.form-control {
+  display: block;
+  width: 70%;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: .375rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
 
+.card{
+  /* flex: 0 0 auto; */
+  width: 90%;
+  
+}
 
-
-
+}

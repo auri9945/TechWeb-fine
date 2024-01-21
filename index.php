@@ -6,6 +6,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
 
     <!-- 1.libreria jQuery
       (file in remoto - La versione remota viene presa da una CDN – Content Delivery Network, 
@@ -41,21 +42,6 @@
   <!-- LOGIN -->
   <!-- quando ultimi la registrazione esce il messaggio che la registrazione è avvenuta con successo sessione inserita nel file registrazione_query.php -->
   <!-- TODO MODIFICARE -->
-  <?php if(isset($_SESSION['message'])): ?>
-          <div class="alert alert-<?php echo $_SESSION['message']['alert'] ?> msg"><?php echo $_SESSION['message']['text'] ?></div>
-        <script>
-          (function() {
-            // script JavaScript per rimuovere automaticamente il messaggio dopo 3 secondi
-            setTimeout(function(){
-              document.querySelector('.msg').remove();
-            },10000)
-          })();
-        </script>
-        <?php 
-          endif;
-          // rimuovo il messaggio
-          unset($_SESSION['message']);
-        ?>
 
   <!-- script con funzioni condivise -->
   
@@ -122,7 +108,7 @@
                     </span>
                   </button>';
           } else {
-            echo '<button class="btn" id="yourAccountLogout">Logout</button>';
+            echo '<button class="button button4" id="yourAccountLogout">Logout</button>';
           }
           
         ?>
@@ -198,15 +184,16 @@
         <form id="loginForm" action="api_server/loginSystem.php" class="form" method="POST">	
           
                 <p class="form-title">Accedi al tuo account</p>
+
                   <div class="input-container">
-                    <input type="email" placeholder="Email" name="email" required autocomplete="off">
+                    <input type="email"  id="email" placeholder="Email" name="email" required autocomplete="off">
                     <span>
                     </span>
                 </div>
                 <div class="input-container">
-                    <input type="password" placeholder="Password" name="password" required>
+                    <input type="password" id="password"placeholder="Password" name="password" required>
                   </div>
-                  <button type="submit" class="submit">
+                  <button name="login" type="submit" class="submit">
                     Accedi
                 </button>
 
