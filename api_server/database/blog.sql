@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 20, 2024 alle 01:56
+-- Creato il: Gen 21, 2024 alle 21:45
 -- Versione del server: 10.4.25-MariaDB
 -- Versione PHP: 8.1.10
 
@@ -74,8 +74,8 @@ CREATE TABLE `post` (
 
 INSERT INTO `post` (`id`, `user`, `subject`, `content`, `title`) VALUES
 (48, 'Ilaria', 4, 'Ciao a tutti ragazzi! Oggi sono molto combattuto.. l\'esame di economia non è andato come mi aspettavo. Lo ridarò nel prossimo appello ma nel frattempo mandatemi tante vibes positive :)', 'Economia'),
-(49, 'Ilaria', 3, 'Salve :)\nVi ricordo che la lezione di domani si terrà in aula C1.\nBuona serata ragazzi', 'Info corso Tecnologie Web'),
-(53, 'Ilaria', 2, 'Tra qualche giorno ho l\'esame di sociologia... sono in ansia siccome non so cosa aspettarmi :(\nSpero vada tutto bene.\nUn saluto a voi tutti', 'Esameeeee');
+(49, 'Stefania', 3, 'Salve :)\nVi ricordo che la lezione di domani si terrà in aula C1.\nBuona serata ragazzi', 'Info corso Tecnologie Web'),
+(53, 'Aurora', 2, 'Tra qualche giorno ho l\'esame di sociologia... sono in ansia siccome non so cosa aspettarmi :(\nSpero vada tutto bene.\nUn saluto a voi tutti', 'Esameeeee');
 
 -- --------------------------------------------------------
 
@@ -95,7 +95,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `nickname`, `password`, `email`) VALUES
-(2, 'Ilaria', '1234', 'test@test.com');
+(2, 'Ilaria', 'Ilaria', 'ilaria@plescia.com'),
+(42, 'Stefania', 'Stefania', 'stefania@scarpati.com'),
+(43, 'Aurora', 'Aurora', 'aurora@nardelli.com');
 
 --
 -- Indici per le tabelle scaricate
@@ -135,13 +137,13 @@ ALTER TABLE `materie`
 -- AUTO_INCREMENT per la tabella `post`
 --
 ALTER TABLE `post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT per la tabella `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
